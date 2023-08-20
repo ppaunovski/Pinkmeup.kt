@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+}
+
+<h2>Calendar</h2>
+
+<div class="container" id="calendar">
+
+</div>
+
+
+
+
+@section Scripts{
+
+
+    <!-- moment lib -->
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
+
+    <!-- fullcalendar bundle -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+    <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
+    <script src='https://cdn.jsdelivr.net/npm/@("@")fullcalendar/moment@6.1.8/index.global.min.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var events = [];
+
+            $.ajax({
+                type: "get",
+                url: "/Appointments/GetAppointments",
+                success: function (data) {
+                    var i = 0;
+                    for (var event in data) {
+                        console.log(event)
+                        i++;
+                        
+                        events.push({
+                            title: data[event].Description,
+                            start: data[event].startTime,
+                            end: data[event].endTime,
+                            extendedProps: {
+                                id: data[event].Id,
+                                price: data[event].Price,
+                                isBooked: data[event].isBooked,
+                                book: data[event].bookTime
+                            },
+                            backgroundColor: pickRandomColor()
+                            
+                        })
+                        
+                    }
+                    console.log(data)
+                    console.log(events)
+
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        expandRows: true,
+                        slotEventOverlap: false,
+                        eventOverlap: false,
+                        contentHeight: 600,
+                        slotMinTime: '10:00:00',
+                        slotMaxTime: '19:00:00',
+                        slotDuration: '02:00',
+                        dateClick: function (info) {
+                            
+                            time = info.dateStr.split('T')
+                            finalTime = time[0] + 'T';
+
+                            t = time[1].split('+')
+                            if (t.length > 1) {
+                                finalTime += t[0]
+                            }
+                            else {
+                                finalTime += time[1].split('-')[0]
+                            }
+
+                            if (confirm("Дали сакате да го резервирате терминот: " + finalTime + "?")) {
+
+                                $.ajax({
+                                    type: 'post',
+                                    url: '/Appointments/CreateAppointment',
+                                    data: {
+                                        startTime: finalTime
+                                    },
+                                    success: function (id) {
+                                        window.location.replace(window.location.origin + "/Appointments/BookAppointment/" + id);
+                                    },
+                                    error: function (err) {
+                                        console.log(err)
+                                    }
+                                })
+                            }
+                        },
+                        eventClick: function (info) {
+                            if (info.event.extendedProps.isBooked)
+                                return
+                            if (confirm('Дали сакате да го резервирате терминот во ' + info.event.start + '?')) {
+                                window.location.replace(window.location.origin + '/Appointments/Book/' + info.event.extendedProps.id)
+                            }
+                            alert('Event: ' + info.event.title);
+                            alert('Event: ' + info.event.start);
+                            alert('isBooked: ' + info.event.extendedProps.isBooked);
+                            alert('price: ' + info.event.extendedProps.price);
+                            alert('book: ' + info.event.extendedProps.book);
+                            alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                            alert('View: ' + info.view.type);
+
+                            // change the border color just for fun
+                            info.el.style.borderColor = 'red';
+                        },
+                        titleFormat: 'MMMM D, YYYY',
+                        initialView: 'timeGridWeek',
+                        selectable: true,
+                        headerToolbar: {
+                            left: "",
+                            center: 'title',
+                            right: 'prev,next'
+                        },
+                        events: events
+                    });
+                    calendar.render();
+
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function pickRandomColor() {
+                let colors = ['#ffcc99',
+                    '#ffcccc',
+                    '#ff99cc',
+                    '#ffccff',
+                    '#cc99ff',
+                    '#ccccff',
+                    '#99ccff',
+                    '#ccffff',
+                    '#99ffcc',
+                    '#dd2857',
+                    '#768daa',
+                    '#33dbcf',
+                    '#6bb08d',
+
+
+
+                ]
+                return colors[Math.floor(Math.random() * colors.length)]
+            }
+
+
+            //var calendarEl = document.getElementById('calendar');
+            //var calendar = new FullCalendar.Calendar(calendarEl, {
+            //    initialView: 'timeGridWeek',
+            //    selectable: true,
+            //    headerToolbar: {
+            //        left: 'prev,next',
+            //        center: 'title',
+            //        right: 'timeGridWeek,timeGridDay'
+            //    },
+            //    events: events
+            //});
+            //calendar.render();
+        });
+
+    </script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>-->
+    @*<script src=" https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js "></script>*@
+    <!--<script>
+        $(document).ready(function () {
+
+
+            var events = [];
+
+            $.ajax({
+                type: "GET",
+                url: "/Appointments/GetAppointments",
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        events.push({
+                            //title: value.Offer.Description,
+                            start: moment(value.startTime),
+                            //price: value.Offer.Price
+
+                        });
+                    })
+
+                    GenerateCalendar(events);
+                    console.log(events)
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function GenerateCalendar(events) {
+                $('#calendar').fullCalendar('destroy');
+
+                $('#calendar').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek, basicDay, agenda'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events: events
+                })
+            }
+
+        })
+    </script>-->
+
+}

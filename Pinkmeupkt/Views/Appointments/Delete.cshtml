@@ -1,0 +1,72 @@
+﻿@model Pinkmeupkt.Models.Appointment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.offer.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.offer.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startTimeString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startTimeString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookTimeString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookTimeString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isBooked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isBooked)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

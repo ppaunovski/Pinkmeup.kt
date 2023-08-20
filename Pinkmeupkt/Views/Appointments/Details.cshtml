@@ -1,0 +1,74 @@
+﻿@model Pinkmeupkt.Models.Appointment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.offer.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.offer.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startTimeString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startTimeString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bookTimeString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookTimeString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isBooked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isBooked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

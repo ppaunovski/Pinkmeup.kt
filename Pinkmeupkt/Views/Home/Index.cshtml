@@ -1,33 +1,101 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    ViewBag.Pink = "#F8C8DC";
+    ViewBag.Blue = "#A7C7E7";
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    <section class="row" aria-labelledby="aspnetTitle" style="font-family: 'Brush Script MT'; padding: 3rem">
+        <p class="lead text-center" id="moto" style="font-size: 30px">
+
+        </p>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
+
+    <div class="row align-content-center justify-content-evenly" style="font-family:Verdana; padding-left: 3rem; padding-right: 3rem;">
+        <section class="col-sm-12 col-md-5 col-lg-7 align-self-center" aria-labelledby="intro" style="display: flex; flex-direction: column">
+            <h1 id="introTitle" class="text-center mb-3">Pink me up!</h1>
             <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
+                Discover the artistry that lies within the gentle touch of our experts, who meticulously craft every line, swirl,
+                and gemstone to perfection. Whether you're seeking a subtle blush or a vibrant fuchsia, our artisans tailor their
+                creations to your desires, ensuring that every nail tells a tale that's uniquely yours. So come, let us "pink you up"
+                and awaken the magic within your fingertips. Let the world see the beauty you hold, and let your nails be the canvas
+                that speaks volumes without saying a word. At Pinkmeup, the art of manicure is a celebration of your individuality,
+                and we invite you to experience it in all its vibrant glory.
             </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <p style="margin: 50px auto"><a class="btn btn-outline-dark" href="/Appointments/Calendar">Book your appointment &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+        <section class="col-sm-12 col-md-7 col-lg-5 justify-content-center d-none d-md-block" aria-labelledby="intro-img">
+            <img src="~/Pictures/hand-wo-background.png" alt="manicure-hands" class="w-100 justify-content-md-center" />
         </section>
     </div>
+
+    <div class="row justify-content-evenly align-items-center p-3" style="background-color: @ViewBag.Pink;">
+
+        <section class="col-sm-4 order-2 order-sm-1" aria-labelledby="intro-img">
+            <img src="~/Pictures/gels-wo-background.png" alt="manicure-hands" class="w-100" />
+        </section>
+
+        <section class="col-sm-8 order-1 order-sm-2" aria-labelledby="intro">
+            <h2 id="introTitle">Unleash Your True Colors</h2>
+            <p style="font-size:large">
+                Colors, the modern emblem of liberation. From electric neons to calming pastels, they're our anthem of individuality.
+                Let them speak your truth and set you free in a world as vibrant as you.
+            </p>
+        </section>
+
+    </div>
+
+    <div class="align-items-center justify-content-center  row p-3" style="font-family:Verdana;">
+        <section class="col-lg-6 p-3" aria-labelledby="intro">
+            <h2 class="text-center" id="introTitle">Nail the Perfect Present!</h2>
+            <h5 class="text-center">Pinkmeup Gift Cards Available Now</h5>
+            <br />
+            <p style="font-size: medium">
+                Gifting is an art of expression, a way to light up lives with thoughtfulness. At Pinkmeup,
+                we've mastered the art of making every gesture unforgettable. Whether it's a special occasion
+                or a simple "just because," our gift cards are the key to gifting pure joy. Share the magic of beauty
+                and pampering with your loved ones, and let Pinkmeup bring smiles that last beyond the moment.
+            </p>
+            <p><a class="btn btn-outline-dark" href="/Appointments/Giftcard">Learn more &raquo;</a></p>
+        </section>
+
+        <section class="col-lg-6 justify-content-center align-items-center" aria-labelledby="intro-img">
+            <img src="~/Pictures/undraw_Gift_card_re_5dyy.png" alt="manicure-hands" class="w-75" />
+        </section>
+    </div>
+
+
+    <div class="row justify-content-evenly align-items-center p-3" style="background-color: @ViewBag.Blue;">
+
+        <section class="col-sm-4 order-2 order-sm-1" aria-labelledby="intro-img">
+            <img src="~/Pictures/gels-wo-background.png" alt="manicure-hands" class="w-100" />
+        </section>
+
+        <section class="col-sm-8 order-1 order-sm-2" aria-labelledby="intro">
+            <h2 id="introTitle">Unleash Your True Colors</h2>
+            <p style="font-size:large">
+                Colors, the modern emblem of liberation. From electric neons to calming pastels, they're our anthem of individuality.
+                Let them speak your truth and set you free in a world as vibrant as you.
+            </p>
+        </section>
+
+    </div>
+
+
 </main>
+
+@section Scripts{
+
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+
+    <script>
+        new TypeIt("#moto", {
+            strings: ["Step into a world of elegance and pampering at our pink paradise, where your nails meet their dreams!"],
+            speed: 80,
+            loop: false,
+        }).go();
+    </script>
+
+}

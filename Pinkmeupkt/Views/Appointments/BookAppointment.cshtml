@@ -1,0 +1,131 @@
+﻿@model Pinkmeupkt.Models.PartialAppointment
+@{
+    ViewBag.Title = "Book";
+}
+
+<h2>Book</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal p-3">
+        <h4>Appointment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <h5>Почеток на терминот:</h5>
+            <div class="col-md-10">
+                <p id="time"></p>
+                <p id="time-hidden" class="d-none">@Model.startTime</p>
+                @Html.HiddenFor(model => model.startTime)
+                @Html.ValidationMessageFor(model => model.startTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.startTimeString)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.bookTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.bookTimeString)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h5>
+                Одберете тип на третман
+            </h5>
+            <div class="col-md-10">
+                @Html.DropDownList("OfferId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OfferId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts{
+    
+    <script>
+
+        var el = document.getElementById("time")
+        var hidden = document.getElementById("time-hidden")
+        el.innerText = date(hidden.innerText)
+
+
+        function date(string) {
+            var day, month, year, hour, minutes, seconds, AM
+            var arr = string.split(" ")
+
+            var date = arr[0].split("/")
+            var time = arr[1].split(":")
+            AM = arr[2] === 'AM' ? true : false
+
+            hour = time[0]
+            minutes = time[1]
+            seconds = time[2]
+
+            day = date[1]
+            year = date[2]
+
+            switch (date[0]) {
+                case "1": month = 'Јануари'; break;
+                case "2": month = 'Февруари'; break;
+                case "3": month = 'Март'; break;
+                case "4": month = 'Април'; break;
+                case "5": month = 'Мај'; break;
+                case "6": month = 'Јуни'; break;
+                case "7": month = 'Јули'; break;
+                case "8": month = 'Август'; break;
+                case "9": month = 'Септември'; break;
+                case "10": month = 'Октомври'; break;
+                case "11": month = 'Ноември'; break;
+                case "12": month = 'Декемвти'; break;
+            }
+
+            if (!AM) {
+                switch (time[0]) {
+                    case "1": hour = '13'; break; 
+                    case "2": hour = '14'; break; 
+                    case "3": hour = '15'; break; 
+                    case "4": hour = '16'; break; 
+                    case "5": hour = '17'; break; 
+                    case "6": hour = '18'; break; 
+                    case "7": hour = '19'; break; 
+                    case "8": hour = '20'; break; 
+                    case "9": hour = '21'; break; 
+                    case "10": hour = '22'; break; 
+                    case "11": hour = '23'; break;  
+                }
+            }
+
+            var returnString = day + ". " + month + " " + year + " " + hour + ":" + minutes + ":" + seconds
+            return returnString
+        }
+    </script>
+    
+    }
+
+
+
