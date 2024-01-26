@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Pinkmeupkt.Models.Offer>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2 class="text-center m-5">Нашите понуди</h2>
+
+<div class="container-fluid row justify-content-center gap-5">
+    @foreach (var offer in Model)
+    {
+        @*<div class="card">
+
+                <div class="card-header">
+                    <p class="card-title">
+                        @offer.Description
+                    </p>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">
+                        aaaaaaaaaaaaaa
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        aaaaaaaaaaaaaaaaaaaaaaaaaa
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    </p>
+                </div>
+
+                <div class="card-footer">
+                    <p class="card-text">
+                        @offer.Price
+                    </p>
+                </div>
+
+            </div>*@
+    <div class="card" style="width: 18rem;">
+        @if (offer.ImagePath != null)
+        {
+            <img class="card-img-top" src="@Url.Content(offer.ImagePath)" alt="Card image cap">
+
+        }
+        <div class="card-body">
+            <h5 class="card-title">@offer.Title</h5>
+            <p class="card-text">@offer.Description</p>
+            <p class="card-text">
+                @offer.Price денари
+            </p>
+        </div>
+    </div>
+    }
+</div>
+

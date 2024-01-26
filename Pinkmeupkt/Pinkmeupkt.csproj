@@ -46,10 +46,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.2.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.1.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.1.0\lib\net47\MimeKit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Formats.Asn1, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.7.0.0\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -170,6 +202,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppointmentsController.cs" />
+    <Compile Include="Controllers\GiftcardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OffersController.cs" />
@@ -180,14 +213,57 @@
     <Compile Include="Migrations\202308201008291_initial.designer.cs">
       <DependentUpon>202308201008291_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202308261037500_add-img-to-offer.cs" />
+    <Compile Include="Migrations\202308261037500_add-img-to-offer.designer.cs">
+      <DependentUpon>202308261037500_add-img-to-offer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308261128201_fix0img-offer.cs" />
+    <Compile Include="Migrations\202308261128201_fix0img-offer.designer.cs">
+      <DependentUpon>202308261128201_fix0img-offer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308290926502_fix.cs" />
+    <Compile Include="Migrations\202308290926502_fix.designer.cs">
+      <DependentUpon>202308290926502_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308290941441_new_fix.cs" />
+    <Compile Include="Migrations\202308290941441_new_fix.designer.cs">
+      <DependentUpon>202308290941441_new_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308290946128_ff.cs" />
+    <Compile Include="Migrations\202308290946128_ff.designer.cs">
+      <DependentUpon>202308290946128_ff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308290947144_gcs.cs" />
+    <Compile Include="Migrations\202308290947144_gcs.designer.cs">
+      <DependentUpon>202308290947144_gcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308290953025_gc_fix.cs" />
+    <Compile Include="Migrations\202308290953025_gc_fix.designer.cs">
+      <DependentUpon>202308290953025_gc_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202308291006197_gc_fix_2.cs" />
+    <Compile Include="Migrations\202308291006197_gc_fix_2.designer.cs">
+      <DependentUpon>202308291006197_gc_fix_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309060801584_gc-update.cs" />
+    <Compile Include="Migrations\202309060801584_gc-update.designer.cs">
+      <DependentUpon>202309060801584_gc-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309060900199_gc-update-1.cs" />
+    <Compile Include="Migrations\202309060900199_gc-update-1.designer.cs">
+      <DependentUpon>202309060900199_gc-update-1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\AppointmentDBO.cs" />
+    <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\Giftcard.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Offer.cs" />
     <Compile Include="Models\PartialAppointment.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -209,12 +285,364 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.semanticui.css" />
+    <Content Include="Content\DataTables\css\autoFill.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.semanticui.css" />
+    <Content Include="Content\DataTables\css\buttons.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.semanticui.css" />
+    <Content Include="Content\DataTables\css\colReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.semanticui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.semanticui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.semanticui.css" />
+    <Content Include="Content\DataTables\css\keyTable.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.semanticui.css" />
+    <Content Include="Content\DataTables\css\responsive.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\rowGroup.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowGroup.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.foundation.css" />
+    <Content Include="Content\DataTables\css\rowGroup.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowGroup.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowGroup.semanticui.css" />
+    <Content Include="Content\DataTables\css\rowGroup.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.semanticui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.semanticui.css" />
+    <Content Include="Content\DataTables\css\scroller.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\select.foundation.css" />
+    <Content Include="Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\select.semanticui.css" />
+    <Content Include="Content\DataTables\css\select.semanticui.min.css" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Pictures\dan-cristian-padure--eqGYVYEuyI-unsplash.jpg" />
     <Content Include="Pictures\gels-wo-background.png" />
     <Content Include="Pictures\hand-wo-background.png" />
+    <Content Include="Pictures\htmlEmail\images\image-1.png" />
+    <Content Include="Pictures\htmlEmail\images\image-2.png" />
+    <Content Include="Pictures\htmlEmail\images\image-3.png" />
+    <Content Include="Pictures\htmlEmail\images\image-4.png" />
+    <Content Include="Pictures\htmlEmail\images\image-5.gif" />
+    <Content Include="Pictures\htmlEmail\index.html" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-04-49_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-09-57_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-15-45_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-20-13_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-20-13_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-20-13_UTC_2.mp4" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-23-21_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-35-34_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-41-00_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_16-48-26_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_17-13-13_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-10-29_17-13-13_UTC.mp4" />
+    <Content Include="Pictures\insta_pics\2022-11-02_22-19-54_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-02_22-19-54_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-07_08-24-52_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-07_08-24-52_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-07_21-08-18_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-09_11-25-33_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-14_08-15-28_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-14_08-15-28_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-14_08-15-28_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-14_17-44-24_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-14_17-44-24_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-14_22-56-17_UTC_profile_pic.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-15_11-22-49_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-15_11-22-49_UTC_1.mp4" />
+    <Content Include="Pictures\insta_pics\2022-11-15_11-22-49_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-15_11-22-49_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-15_11-40-42_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-15_22-08-30_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-15_22-08-30_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-16_12-01-53_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-17_17-54-27_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-30_13-18-09_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-30_13-18-09_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-11-30_13-18-09_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-01_17-35-11_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-01_17-35-11_UTC.mp4" />
+    <Content Include="Pictures\insta_pics\2022-12-04_09-40-44_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-04_09-40-44_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-07_16-12-30_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-07_16-12-30_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-10_18-33-56_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-10_18-33-56_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-19_21-13-37_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-24_14-26-26_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-26_15-34-29_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-26_15-34-29_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-26_15-34-29_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-26_15-34-29_UTC_3.mp4" />
+    <Content Include="Pictures\insta_pics\2022-12-28_13-57-47_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-28_13-57-47_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-30_09-50-49_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-30_09-50-49_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-30_09-50-49_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-30_09-50-49_UTC_3.mp4" />
+    <Content Include="Pictures\insta_pics\2022-12-30_09-50-49_UTC_4.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-30_09-50-49_UTC_5.jpg" />
+    <Content Include="Pictures\insta_pics\2022-12-30_13-12-05_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-08_22-45-31_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-08_22-45-31_UTC_1.mp4" />
+    <Content Include="Pictures\insta_pics\2023-01-08_22-45-31_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-11_15-02-13_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-11_15-02-13_UTC_1.mp4" />
+    <Content Include="Pictures\insta_pics\2023-01-11_15-02-13_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-11_15-02-13_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-19_12-38-36_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-19_12-38-36_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-01-19_12-38-36_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-02_15-25-18_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-02_15-25-18_UTC_1.mp4" />
+    <Content Include="Pictures\insta_pics\2023-02-02_15-25-18_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-02_15-25-18_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-02_15-25-18_UTC_4.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-02_15-25-18_UTC_5.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-03_16-48-39_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-03_16-48-39_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-03_16-48-39_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-03_16-48-39_UTC_3.mp4" />
+    <Content Include="Pictures\insta_pics\2023-02-06_14-16-47_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-06_14-16-47_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-02-06_14-16-47_UTC_2.mp4" />
+    <Content Include="Pictures\insta_pics\2023-02-06_22-07-56_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-01_15-17-01_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-03_09-33-02_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-03_17-32-27_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-04_11-56-02_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-04_11-56-02_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-05_22-23-10_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-05_22-23-10_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-05_22-23-10_UTC_2.mp4" />
+    <Content Include="Pictures\insta_pics\2023-03-06_10-02-39_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-06_10-02-39_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-06_10-02-39_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-06_10-02-39_UTC_4.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-06_10-02-39_UTC_4.mp4" />
+    <Content Include="Pictures\insta_pics\2023-03-19_15-30-10_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-03-19_15-30-10_UTC.mp4" />
+    <Content Include="Pictures\insta_pics\2023-03-31_14-56-18_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-01_10-48-22_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-01_10-48-22_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-06_18-55-42_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-06_18-55-42_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-08_14-03-15_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-08_14-03-15_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-08_14-03-15_UTC_2.mp4" />
+    <Content Include="Pictures\insta_pics\2023-04-15_17-01-25_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-15_17-04-47_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-20_07-12-23_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-20_07-12-23_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-20_07-12-23_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\2023-04-28_12-53-07_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-06_13-43-28_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-11_09-19-55_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-14_12-33-08_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-16_11-58-47_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-16_17-30-24_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-16_17-30-24_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-05-16_17-30-24_UTC_2.mp4" />
+    <Content Include="Pictures\insta_pics\2023-06-21_10-00-30_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-06-28_07-17-06_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\2023-06-28_07-17-06_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\2023-06-28_07-30-26_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\2023-06-28_07-30-26_UTC.mp4" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-10-29_16-04-49_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-10-29_16-15-45_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-10-29_16-41-00_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-10-29_17-13-13_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-09_11-25-33_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-14_08-15-28_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-14_08-15-28_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-14_17-44-24_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-14_17-44-24_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-15_11-22-49_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-15_22-08-30_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-17_17-54-27_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-30_13-18-09_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-11-30_13-18-09_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-12-04_09-40-44_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-12-19_21-13-37_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-12-30_09-50-49_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2022-12-30_13-12-05_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-01-08_22-45-31_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-01-11_15-02-13_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-02-02_15-25-18_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-02-03_16-48-39_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-03-01_15-17-01_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-03-06_10-02-39_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-04-01_10-48-22_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-04-06_18-55-42_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-04-08_14-03-15_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-04-15_17-01-25_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\rectangle\2023-05-14_12-33-08_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-10-29_16-09-57_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-10-29_16-20-13_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-10-29_16-23-21_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-10-29_16-35-34_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-10-29_16-48-26_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-11-02_22-19-54_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-11-07_08-24-52_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-11-07_08-24-52_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-11-07_21-08-18_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-11-15_22-08-30_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-11-16_12-01-53_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-12-07_16-12-30_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-12-10_18-33-56_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-12-24_14-26-26_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-12-26_15-34-29_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2022-12-26_15-34-29_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-01-19_12-38-36_UTC_2.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-02-06_14-16-47_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-02-06_22-07-56_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-03-03_09-33-02_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-03-03_17-32-27_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-03-04_11-56-02_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-03-05_22-23-10_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-03-31_14-56-18_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-04-15_17-04-47_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-04-20_07-12-23_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-04-20_07-12-23_UTC_3.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-04-28_12-53-07_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-05-06_13-43-28_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-05-16_11-58-47_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-05-16_17-30-24_UTC_1.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-06-21_10-00-30_UTC.jpg" />
+    <Content Include="Pictures\insta_pics\square\2023-06-28_07-17-06_UTC_2.jpg" />
     <Content Include="Pictures\kartik-gada--4iMX-4MIZ8-unsplash.jpg" />
     <Content Include="Pictures\nails-wo-background.png" />
     <Content Include="Pictures\undraw_Gift_card_re_5dyy.png" />
@@ -224,7 +652,91 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\DataTables\css\semanticui.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.semanticui.js" />
+    <Content Include="Scripts\DataTables\autoFill.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.min.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.min.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.print.js" />
+    <Content Include="Scripts\DataTables\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\buttons.semanticui.js" />
+    <Content Include="Scripts\DataTables\buttons.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowGroup.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowGroup.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\responsive.semanticui.js" />
+    <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -284,9 +796,19 @@
     <Content Include="Views\Offers\Edit.cshtml" />
     <Content Include="Views\Offers\Index.cshtml" />
     <Content Include="Views\Account\AddUserToRole.cshtml" />
+    <Content Include="Views\Home\SendEmail.cshtml" />
+    <Content Include="Views\Offers\OurOffers.cshtml" />
+    <Content Include="Views\Giftcards\Create.cshtml" />
+    <Content Include="Views\Giftcards\Delete.cshtml" />
+    <Content Include="Views\Giftcards\Details.cshtml" />
+    <Content Include="Views\Giftcards\Edit.cshtml" />
+    <Content Include="Views\Giftcards\Index.cshtml" />
+    <Content Include="Views\Giftcards\Redeem.cshtml" />
+    <Content Include="Views\Giftcards\RedeemGift.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Pictures\OffersPictures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -318,6 +840,36 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202308201008291_initial.resx">
       <DependentUpon>202308201008291_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308261037500_add-img-to-offer.resx">
+      <DependentUpon>202308261037500_add-img-to-offer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308261128201_fix0img-offer.resx">
+      <DependentUpon>202308261128201_fix0img-offer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308290926502_fix.resx">
+      <DependentUpon>202308290926502_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308290941441_new_fix.resx">
+      <DependentUpon>202308290941441_new_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308290946128_ff.resx">
+      <DependentUpon>202308290946128_ff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308290947144_gcs.resx">
+      <DependentUpon>202308290947144_gcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308290953025_gc_fix.resx">
+      <DependentUpon>202308290953025_gc_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202308291006197_gc_fix_2.resx">
+      <DependentUpon>202308291006197_gc_fix_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309060801584_gc-update.resx">
+      <DependentUpon>202309060801584_gc-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309060900199_gc-update-1.resx">
+      <DependentUpon>202309060900199_gc-update-1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

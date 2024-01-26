@@ -3,7 +3,7 @@
     ViewBag.Title = "Calendar";
 }
 
-<h2>Calendar</h2>
+<br />
 
 <div class="container" id="calendar">
 
@@ -28,6 +28,12 @@
         document.addEventListener('DOMContentLoaded', function () {
 
             var events = [];
+            var today = new Date().toISOString().slice(0, 10);
+            var now = new Date().toISOString();
+            var calendarEl = document.getElementById('calendar');
+            var calendar;
+
+            console.log(now)
 
             $.ajax({
                 type: "get",
@@ -39,7 +45,7 @@
                         i++;
                         
                         events.push({
-                            title: data[event].Description,
+                            title: data[event].Title,
                             start: data[event].startTime,
                             end: data[event].endTime,
                             extendedProps: {
@@ -56,8 +62,17 @@
                     console.log(data)
                     console.log(events)
 
-                    var calendarEl = document.getElementById('calendar');
-                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                    calendar = new FullCalendar.Calendar(calendarEl, {
+                        validRange: {
+                            start: now
+                        },
+                        initialView: 'timeGridWeek',
+                        views: {
+                            timeGridFourDay: {
+                                type: 'timeGrid',
+                                duration: { days: 4 }
+                            }
+                        },
                         expandRows: true,
                         slotEventOverlap: false,
                         eventOverlap: false,
@@ -66,19 +81,36 @@
                         slotMaxTime: '19:00:00',
                         slotDuration: '02:00',
                         dateClick: function (info) {
-                            
+
                             time = info.dateStr.split('T')
                             finalTime = time[0] + 'T';
+
+                            displayTime = time[0] + " "
 
                             t = time[1].split('+')
                             if (t.length > 1) {
                                 finalTime += t[0]
+                                displayTime += t[0] + ".000"
                             }
                             else {
                                 finalTime += time[1].split('-')[0]
+                                displayTime += time[1].split('-')[0] + ".000"
                             }
 
-                            if (confirm("Дали сакате да го резервирате терминот: " + finalTime + "?")) {
+                            var isBooked = false;
+
+                            for (var id in events) {
+                                console.log(events[id])
+                                console.log(finalTime)
+                                console.log(time)
+                                console.log(displayTime)
+
+                                if (displayTime == events[id].start) {
+                                    isBooked = true;
+                                }
+                            }
+
+                            if (!isBooked && confirm("Дали сакате да го резервирате терминот: " + finalTime + "?")) {
 
                                 $.ajax({
                                     type: 'post',
@@ -113,7 +145,6 @@
                             info.el.style.borderColor = 'red';
                         },
                         titleFormat: 'MMMM D, YYYY',
-                        initialView: 'timeGridWeek',
                         selectable: true,
                         headerToolbar: {
                             left: "",
@@ -129,6 +160,22 @@
                     alert('failed');
                 }
             })
+
+            
+
+            function setGrid(e) {
+                if (window.innerWidth > 960) {
+                    calendar.changeView('timeGridWeek', today)
+                }
+                else if (window.innerWidth > 600) {
+                    calendar.changeView('timeGridFourDay', today)
+                }
+                else {
+                    calendar.changeView('timeGridDay', today)
+                }
+            }
+
+            window.onresize = setGrid
 
             function pickRandomColor() {
                 let colors = ['#ffcc99',

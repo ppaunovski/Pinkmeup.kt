@@ -8,10 +8,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Pinkmeupkt.Models;
+using System.IO;
+using System.EnterpriseServices;
 
 namespace Pinkmeupkt.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class OffersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,10 +21,16 @@ namespace Pinkmeupkt.Controllers
         // GET: Offers
         public async Task<ActionResult> Index()
         {
-            return View(await db.Offers.ToListAsync());
+            if (User.IsInRole(Roles.Admin))
+            {
+                return View(await db.Offers.ToListAsync());
+            }
+
+            return View("OurOffers", await db.Offers.ToListAsync());
         }
 
         // GET: Offers/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,6 +46,7 @@ namespace Pinkmeupkt.Controllers
         }
 
         // GET: Offers/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -48,10 +57,21 @@ namespace Pinkmeupkt.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Description,Price,Duration")] Offer offer)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Create(Offer offer)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(offer.ImageFile.FileName);
+                string extension = Path.GetExtension(offer.ImageFile.FileName);
+
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                
+                offer.ImagePath = "~/Pictures/OffersPictures/" + fileName;
+
+                fileName = Path.Combine(Server.MapPath("~/Pictures/OffersPictures/"), fileName);
+                offer.ImageFile.SaveAs(fileName);
+
                 db.Offers.Add(offer);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -61,6 +81,7 @@ namespace Pinkmeupkt.Controllers
         }
 
         // GET: Offers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,10 +101,21 @@ namespace Pinkmeupkt.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Description,Price,Duration")] Offer offer)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Edit(Offer offer)
         {
             if (ModelState.IsValid)
             {
+                string fileName = Path.GetFileNameWithoutExtension(offer.ImageFile.FileName);
+                string extension = Path.GetExtension(offer.ImageFile.FileName);
+
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+
+                offer.ImagePath = "~/Pictures/OffersPictures/" + fileName;
+
+                fileName = Path.Combine(Server.MapPath("~/Pictures/OffersPictures/"), fileName);
+                offer.ImageFile.SaveAs(fileName);
+
                 db.Entry(offer).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -92,6 +124,7 @@ namespace Pinkmeupkt.Controllers
         }
 
         // GET: Offers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -109,6 +142,7 @@ namespace Pinkmeupkt.Controllers
         // POST: Offers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Offer offer = await db.Offers.FindAsync(id);

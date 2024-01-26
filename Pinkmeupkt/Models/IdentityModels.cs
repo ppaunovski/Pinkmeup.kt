@@ -23,6 +23,7 @@ namespace Pinkmeupkt.Models
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<PartialAppointment> PartialAppointments { get; set; }
+        public DbSet<Giftcard> Gifts { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

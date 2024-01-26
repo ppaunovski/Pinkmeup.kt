@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Pinkmeupkt.Models.Giftcard>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="table" class="table">
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Offer.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SendRecipientEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOfPurchase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Offer.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SendRecipientEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeOfPurchase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+@section Scripts{
+    
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable()
+        })
+    </script>
+    
+    }

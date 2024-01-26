@@ -1,0 +1,358 @@
+﻿@model Pinkmeupkt.Models.Giftcard
+
+@{
+    ViewBag.Title = "Redeem";
+}
+
+<h2>Redeem</h2>
+
+<div>
+    <h4>Giftcard</h4>
+    <hr />
+
+    @using (@Html.BeginForm("RedeemGift", "Giftcards", FormMethod.Post))
+    {
+        <div class="row container-fluid justify-content-center">
+
+            <div class="card w-75" style="background-color: whitesmoke; border: dashed 3px #F8C8DC ">
+
+                <div class="card-body">
+
+                    <h3 class="card-title p-3 text-center">
+
+                        A Thoughtful Gift for You: Pinkmeup Beauty Experience 🎁
+
+                    </h3>
+
+                    <div class="row p-3 justify-content-evenly align-items-center">
+                        <div class="col-md-6 justify-content-center align-items-center">
+
+                            <dl>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Offer.Title)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Offer.Title)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Offer.Description)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Offer.Description)
+                                </dd>
+
+                            </dl>
+
+                        </div>
+
+                        <div class="col-md-6 justify-content-center">
+                            <dl>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Name)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Surname)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Surname)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Phone)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Email)
+                                </dd>
+
+                                @Html.HiddenFor(m => m.AppointmentTimeString)
+                                @Html.HiddenFor(m => m.AppointmentTime)
+                                @Html.HiddenFor(m => m.Phone)
+                                @Html.HiddenFor(m => m.Name)
+                                @Html.HiddenFor(m => m.Surname)
+                                @Html.HiddenFor(m => m.TimeOfPurchase)
+                                @Html.HiddenFor(m => m.Id)
+                                @Html.HiddenFor(m => m.OfferId)
+                                @Html.HiddenFor(m => m.Email)
+                                @Html.HiddenFor(m => m.Message)
+
+
+                            </dl>
+
+
+
+                        </div>
+                    </div>
+
+                    @if (Model.Message != null)
+                    {
+                        <div class="row justify-content-center">
+                            <div class="col-12 justify-content-center">
+                                <dl>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Message)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Message)
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="container" id="calendar">
+
+                    </div>
+
+                    <div class="row justify-content-center p-5">
+
+                        <input type="submit" value="Redeem your gift" class="btn btn-info w-25" />
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+
+@section Scripts{
+
+
+    <!-- moment lib -->
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
+
+    <!-- fullcalendar bundle -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+    <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
+    <script src='https://cdn.jsdelivr.net/npm/@("@")fullcalendar/moment@6.1.8/index.global.min.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var events = [];
+            var today = new Date().toISOString().slice(0, 10);
+            var now = new Date().toISOString();
+            var calendarEl = document.getElementById('calendar');
+            var calendar;
+
+            console.log(now)
+
+            $.ajax({
+                type: "get",
+                url: "/Appointments/GetAppointments",
+                success: function (data) {
+                    var i = 0;
+                    for (var event in data) {
+                        console.log(event)
+                        i++;
+
+                        events.push({
+                            title: data[event].Title,
+                            start: data[event].startTime,
+                            end: data[event].endTime,
+                            extendedProps: {
+                                id: data[event].Id,
+                                price: data[event].Price,
+                                isBooked: data[event].isBooked,
+                                book: data[event].bookTime
+                            },
+                            backgroundColor: pickRandomColor()
+
+                        })
+
+                    }
+                    console.log(data)
+                    console.log(events)
+
+                    calendar = new FullCalendar.Calendar(calendarEl, {
+                        validRange: {
+                            start: now
+                        },
+                        initialView: 'timeGridWeek',
+                        views: {
+                            timeGridFourDay: {
+                                type: 'timeGrid',
+                                duration: { days: 4 }
+                            }
+                        },
+                        expandRows: true,
+                        slotEventOverlap: false,
+                        eventOverlap: false,
+                        contentHeight: 600,
+                        slotMinTime: '10:00:00',
+                        slotMaxTime: '19:00:00',
+                        slotDuration: '02:00',
+                        dateClick: function (info) {
+
+                            time = info.dateStr.split('T')
+                            finalTime = time[0] + 'T';
+
+                            displayTime = time[0] + " "
+
+                            t = time[1].split('+')
+                            if (t.length > 1) {
+                                finalTime += t[0]
+                                displayTime += t[0] + ".000"
+                            }
+                            else {
+                                finalTime += time[1].split('-')[0]
+                                displayTime += time[1].split('-')[0] + ".000"
+                            }
+
+                            var isBooked = false;
+
+                            for (var id in events) {
+                                console.log(events[id])
+                                console.log(finalTime)
+                                console.log(time)
+                                console.log(displayTime)
+
+                                if (displayTime == events[id].start) {
+                                    isBooked = true;
+                                }
+                            }
+
+                            if (!isBooked && confirm("Дали сакате да го резервирате терминот: " + finalTime + "?")) {
+
+                                
+
+                                $.ajax({
+                                    type: 'post',
+                                    url: '/Giftcards/BookTime',
+                                    data: {
+                                        id: @Model.Id,
+                                        startTime: finalTime
+                                    },
+                                    success: function (id) {
+                                        console.log('Success')
+
+                                        //window.location.replace(window.location.origin + "/Appointments/BookAppointment/" + id);
+                                    },
+                                    error: function (err) {
+                                        console.log(err)
+                                    }
+                                })
+                            }
+                        },
+                        eventClick: function (info) {
+                            if (info.event.extendedProps.isBooked)
+                                return
+                            if (confirm('Дали сакате да го резервирате терминот во ' + info.event.start + '?')) {
+                                window.location.replace(window.location.origin + '/Appointments/Book/' + info.event.extendedProps.id)
+                            }
+                            alert('Event: ' + info.event.title);
+                            alert('Event: ' + info.event.start);
+                            alert('isBooked: ' + info.event.extendedProps.isBooked);
+                            alert('price: ' + info.event.extendedProps.price);
+                            alert('book: ' + info.event.extendedProps.book);
+                            alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                            alert('View: ' + info.view.type);
+
+                            // change the border color just for fun
+                            info.el.style.borderColor = 'red';
+                        },
+                        titleFormat: 'MMMM D, YYYY',
+                        selectable: true,
+                        headerToolbar: {
+                            left: "",
+                            center: 'title',
+                            right: 'prev,next'
+                        },
+                        events: events
+                    });
+                    calendar.render();
+
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+
+
+            function setGrid(e) {
+                if (window.innerWidth > 960) {
+                    calendar.changeView('timeGridWeek', today)
+                }
+                else if (window.innerWidth > 600) {
+                    calendar.changeView('timeGridFourDay', today)
+                }
+                else {
+                    calendar.changeView('timeGridDay', today)
+                }
+            }
+
+            window.onresize = setGrid
+
+            function pickRandomColor() {
+                let colors = ['#ffcc99',
+                    '#ffcccc',
+                    '#ff99cc',
+                    '#ffccff',
+                    '#cc99ff',
+                    '#ccccff',
+                    '#99ccff',
+                    '#ccffff',
+                    '#99ffcc',
+                    '#dd2857',
+                    '#768daa',
+                    '#33dbcf',
+                    '#6bb08d',
+
+
+
+                ]
+                return colors[Math.floor(Math.random() * colors.length)]
+            }
+
+
+            //var calendarEl = document.getElementById('calendar');
+            //var calendar = new FullCalendar.Calendar(calendarEl, {
+            //    initialView: 'timeGridWeek',
+            //    selectable: true,
+            //    headerToolbar: {
+            //        left: 'prev,next',
+            //        center: 'title',
+            //        right: 'timeGridWeek,timeGridDay'
+            //    },
+            //    events: events
+            //});
+            //calendar.render();
+        });
+
+    </script>
+    }

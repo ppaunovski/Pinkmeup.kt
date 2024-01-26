@@ -7,9 +7,25 @@
     <h2 id="title">@ViewBag.Title.</h2>
 
     <p class="text-success">@ViewBag.StatusMessage</p>
+
+    <div>
+
+        <table class="table" id="appointments">
+
+            <thead id="head">
+                
+            </thead>
+
+            <tbody id="body">
+            </tbody>
+
+        </table>
+
+    </div>
     <div>
         <h4>Change your account settings</h4>
         <hr />
+
         <dl class="dl-horizontal">
             <dt>Password:</dt>
             <dd>
@@ -31,13 +47,13 @@
             </dd>
             @*
                 Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-                
+
                 See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                     for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                
+
                 Uncomment the following block after you have set up two-factor authentication
             *@
-            @*  
+            @*
                 <dt>Phone Number:</dt>
                 <dd>
                     @(Model.PhoneNumber ?? "None")
@@ -83,7 +99,65 @@
                             </text>
                         }
                     }*@
+
             </dd>
         </dl>
     </div>
 </main>
+
+
+@section Scripts{
+
+    <script>
+
+        var user = "@User.Identity.Name"
+        user = user.replace("@@", "#");
+        console.log(user)
+        var appointments = []
+        var table = document.getElementById("appointments")
+        var head = document.getElementById("head")
+        var body = document.getElementById("body")
+
+        $.ajax({
+            type: "get",
+            url: "/Appointments/RequestForUser/" + user,
+            data: {
+                user: user
+            },
+            success: function (res) {
+                console.log(res)
+                appointments = res
+                //table.innerHTML = "";
+
+                //table.innerHTML += "<thead> <tr><th>Тип на третман</th> <th>Датум</th> <th>Детали</th> </tr> </thead>"
+                //table.innerHTML += "<tbody>"
+                head.innerHTML = "<tr><th>Тип на третман</th> <th>Датум</th> <th>Детали</th> </tr>"
+                for (var ind in res) {
+                    body.innerHTML += `<tr> <td>${res[ind][0]}</td> <td>${res[ind][1]}</td> <td><a href="/Appointments/Details/${res[ind][2]}">Повеќе</a></td> </tr>`
+                }
+
+                //table.innerHTML += "</tbody>"
+
+                //$(document).ready(function () {
+                    $("#appointments").DataTable()
+                //})
+
+            },
+            error: function (err) {
+                console.log('error')
+                console.log(err)
+            }
+        })
+
+    </script>
+
+
+
+        <script>
+            //$(document).ready(function () {
+            //    $("#appointments").DataTable()
+            //})
+        </script>
+
+   
+}  

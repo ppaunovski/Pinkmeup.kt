@@ -15,7 +15,7 @@
 <body class="container-fluid p-0 m-0" style="overflow-x: hidden">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm position-sticky top-0" style="background-color: @ViewBag.Pink; z-index: 10">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Pinkmeup.kt", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Book Appointment", "Calendar", "Appointments", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Offers", "Index", "Offers", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Gift", "Index", "Giftcards", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
                 </dixv>
@@ -35,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer class="container">
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Pinkmeup.kt</p>
         </footer>
     </div>
 

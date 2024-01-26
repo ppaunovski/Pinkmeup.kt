@@ -18,9 +18,35 @@
                 </div>
             </main>*@
 
-<main>
+<main class="justify-content-center row">
 
-    <div id="gallery" class="row container justify-content-evenly p-3">
+    <div id="gallery" class="row container justify-content-center gap-2 m-3">
+        @foreach (var file in ViewBag.Rectangle)
+        {
+
+
+            <div class="card col-md-3 col-sm-5">
+                <div class="card-body">
+                    <img class="card-img" src="~/Pictures/insta_pics/rectangle/@Path.GetFileName(file)" />
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+    <div id="gallery" class="row container d-flex justify-content-center gap-2 m-3">
+        @foreach (var file in ViewBag.Square)
+        {
+
+
+            <div class="card col-md-3 col-sm-5">
+                <div class="card-body">
+                    <img class="card-img" src="~/Pictures/insta_pics/square/@Path.GetFileName(file)" />
+                </div>
+            </div>
+
+        }
 
     </div>
 
@@ -34,7 +60,7 @@
 
         var xhr = new XMLHttpRequest()
 
-        xhr.open("GET", "https://www.instagram.com/pinkmeup.kt/", true)
+        xhr.open("get", "https://www.instagram.com/pinkmeup.kt/", true)
         xhr.responseType = "document"
 
         xhr.onload = function () {
@@ -50,6 +76,16 @@
         }
 
         xhr.send()
+
+    </script>
+
+    <script>
+
+        var gallery = document.getElementById('gallery');
+
+        for (var pic in @Model) {
+            console.log(pic)
+        }
 
     </script>
     

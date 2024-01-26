@@ -1,0 +1,111 @@
+﻿@model Pinkmeupkt.Models.Giftcard
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<div class="justify-content-center">
+
+
+    @using (Html.BeginForm(new { @class = "justify-content-center row container" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card w-75 p-3 align-self-center" style="margin: 0 auto"> 
+            <h4>Giftcard</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="container justify-content-around row">
+
+                <div class="form-group col-md-6 justify-content-center d-flex flex-column">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10 justify-content-center">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6 justify-content-center">
+                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SendRecipientEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.SendRecipientEmail)
+                            @Html.ValidationMessageFor(model => model.SendRecipientEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container align-items-center row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.OfferId, "OfferId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("OfferId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OfferId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea name="Message" class="form-control"></textarea>
+                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="container row">
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.TimeOfPurchase, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TimeOfPurchase, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TimeOfPurchase, "", new { @class = "text-danger" })
+                        </div>*@
+                    @Html.HiddenFor(model => model.TimeOfPurchase)
+                </div>
+
+                
+            </div>
+
+
+
+            
+                        <input type="submit" style="margin: 15px auto" value="Create" class="btn w-25 btn-primary" />
+                
+            
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

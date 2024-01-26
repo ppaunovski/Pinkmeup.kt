@@ -29,7 +29,7 @@ namespace Pinkmeupkt.Controllers
         }
 
         // GET: Appointments/Details/5
-        [Authorize(Roles = "Admin,Moderator")]
+        //[Authorize(Roles = "Admin,Moderator")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -65,7 +65,7 @@ namespace Pinkmeupkt.Controllers
         [AllowAnonymous]
         public JsonResult GetAppointments()
         {
-            var appointments = db.Appointments.Include(a => a.offer).ToList();
+            var appointments = db.Appointments.Include(a => a.offer).Where(a => a.startTime.CompareTo(DateTime.Now) >= 0).ToList();
             List<AppointmentDBO> list = new List<AppointmentDBO>();
 
             foreach (var a in appointments)
@@ -76,6 +76,7 @@ namespace Pinkmeupkt.Controllers
                 appointmentDBO.bookTime = a.bookTime != null ? a.bookTime.ToString("yyyy-MM-dd HH:mm:ss") + ".000" : null;
                 appointmentDBO.Price = a.offer.Price;
                 appointmentDBO.Description = a.offer.Description;
+                appointmentDBO.Title = a.offer.Title;
                 appointmentDBO.isBooked = a.isBooked;
                 appointmentDBO.Id = a.Id;
 
@@ -101,13 +102,31 @@ namespace Pinkmeupkt.Controllers
             return Json(partial.Id);
         }
 
+        [HttpGet]
+        public JsonResult RequestForUser (string user)
+        {
+            string email = user.Replace("#", "@");
+            List<List<string>> apps = new List<List<string>> ();
+            var app = db.Appointments.Where(a => a.ApplicationUser.Email == email).Include(a => a.offer).ToList();
+            foreach(var ap in app)
+            {
+                List<string> list = new List<string> ();
+                list.Add(ap.offer.Title);
+                list.Add(ap.startTimeString);
+                list.Add(ap.Id.ToString());
+                apps.Add(list);
+            }
+
+            return Json(apps, JsonRequestBehavior.AllowGet);
+        }
+
         [Authorize(Roles = "Admin,Moderator,Customer")]
         public ActionResult BookAppointment (int id)
         {
             //2023-08-03T12:00:00+02:00
             var partial = db.PartialAppointments.Find(id);
 
-            ViewBag.OfferId = new SelectList(db.Offers.Where(o => o.Description != "Слободен термин"), "Id", "Description");
+            ViewBag.OfferId = new SelectList(db.Offers.Where(o => o.Title != "Слободен термин"), "Id", "Title");
 
             return View(partial);
         }
@@ -136,7 +155,7 @@ namespace Pinkmeupkt.Controllers
         public ActionResult Book(int id)
         {
             var model = db.Appointments.Find(id);
-            ViewBag.OfferId = new SelectList(db.Offers.Where(o => o.Description != "Слободен термин"), "Id", "Description", model.OfferId);
+            ViewBag.OfferId = new SelectList(db.Offers.Where(o => o.Description != "Слободен термин"), "Id", "Title", model.OfferId);
             return View(model);
         }
 
@@ -164,7 +183,7 @@ namespace Pinkmeupkt.Controllers
         [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Create()
         {
-            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Description");
+            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Title");
             return View();
         }
 
@@ -193,7 +212,7 @@ namespace Pinkmeupkt.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Description", appointment.OfferId);
+            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Title", appointment.OfferId);
             return View(appointment);
         }
 
@@ -210,7 +229,7 @@ namespace Pinkmeupkt.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Description", appointment.OfferId);
+            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Title", appointment.OfferId);
             return View(appointment);
         }
 
@@ -228,12 +247,12 @@ namespace Pinkmeupkt.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Description", appointment.OfferId);
+            ViewBag.OfferId = new SelectList(db.Offers, "Id", "Title", appointment.OfferId);
             return View(appointment);
         }
 
         // GET: Appointments/Delete/5
-        [Authorize(Roles = "Admin,Moderator")]
+        //[Authorize(Roles = "Admin,Moderator")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -251,7 +270,7 @@ namespace Pinkmeupkt.Controllers
         // POST: Appointments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Moderator")]
+        //[Authorize(Roles = "Admin,Moderator")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Appointment appointment = await db.Appointments.FindAsync(id);
